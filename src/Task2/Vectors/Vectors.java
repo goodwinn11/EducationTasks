@@ -21,7 +21,7 @@ public class Vectors {
     }
 
     public static void printOutVector(Vectors[] vectors, int number){
-        System.out.printf("\nКоордината вектора x: %.2f Координата вектора y: %.2f", vectors[number].x, vectors[number].y);
+        System.out.printf("Координата вектора x: %.2f Координата вектора y: %.2f", vectors[number].x, vectors[number].y);
     };
     public static Vectors additionVectors(Vectors vector1, Vectors vector2){
         Vectors resultVector = new Vectors(0,0);
@@ -36,6 +36,7 @@ public class Vectors {
         inputVector(0,vectors);
         inputVector(1,vectors);
         printOutVector(vectors, 0);
+        System.out.println();
         printOutVector(vectors, 1);
         //запрос операции с векторами
         boolean work = true;
@@ -62,9 +63,9 @@ public class Vectors {
                     }
 
                 case 3: { //умножение
-                    System.out.println("Введите скаляр для вектора 1: ");
+                    System.out.print("Введите скаляр для вектора 1: ");
                     resultVector[0] = multiplicationVector(vectors[0]);
-                    System.out.println("Введите скаляр для вектора 2: ");
+                    System.out.print("Введите скаляр для вектора 2: ");
                     resultVector[3]= multiplicationVector(vectors[1]);
 
                         break;
@@ -72,9 +73,9 @@ public class Vectors {
 
                 }
                 case 4: { //деление
-                    System.out.println("Введите скаляр для вектора 1: ");
+                    System.out.print("Введите скаляр для вектора 1: ");
                     resultVector[4] = devisionVector(vectors[0]);
-                    System.out.println("Введите скаляр для вектора 2: ");
+                    System.out.print("Введите скаляр для вектора 2: ");
                     resultVector[5]= devisionVector(vectors[1]);
 
                     break;
