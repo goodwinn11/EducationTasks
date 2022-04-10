@@ -12,7 +12,7 @@ public class ArraysOperations {
     int SumArray[][];
 
     public static void main(String[] args) throws IOException {
-
+        boolean first = false, second = false, third = false; // выполнена ли операция арифметическая
 
         //матрица размеров массивов
         int size[][] = new int[2][2];
@@ -37,6 +37,8 @@ public class ArraysOperations {
 
 
         boolean work = true; //продолжать вычисления
+
+
         int[][] resultArray = new int[size[0][0]][size[0][1]]; //инициализация матрицы под сложение и вычитание
         int[][] multiplicationArray = new int[size[0][0]][size[1][1]];
         int operation = 0;
@@ -56,11 +58,14 @@ public class ArraysOperations {
                                     resultArray[i][j] = array1[i][j] + array2[i][j];
                                 }
                             }
+                        first = true;
+                            break;
                         } else {
                             System.out.println("Возможно сложение только матриц одинакового размера");
+
                             break;
                         }
-                        break;
+
                     }
                     case 2: { //вычитание
                         if (size[0][0] == size[1][0] && size[0][1] == size[1][1]) {
@@ -69,7 +74,9 @@ public class ArraysOperations {
                                     resultArray[i][j] = array1[i][j] - array2[i][j];
                                 }
                             }
+                            second = true;
                             break;
+
                         } else {
                             System.out.println("Возможно вычитание только для матриц одинакового размера");
                             break;
@@ -84,6 +91,7 @@ public class ArraysOperations {
                                         multiplicationArray[i][j] += array1[i][r] * array2[r][j];
                                 }
                             }
+                            third = true;
                             break;
                         } else {
                             System.out.println("Перемножать можно только совместимые матрицы ");
@@ -103,15 +111,15 @@ public class ArraysOperations {
 
 
         }
-        if(resultArray.length != 0){
+        if(first || second){
             System.out.println("Массив результата сложения/вычитания");
             printOutArray(resultArray);
         }
-        if (multiplicationArray.length!=0){
+        if (third){
             System.out.println("Массив результата умножения");
             printOutArray(multiplicationArray);
         }
-        if (multiplicationArray.length == 0 && resultArray.length ==0) System.out.println("Никаких операций не произведено");
+        if (!first && !second && !third) System.out.println("Никаких операций не произведено");
 
     }
 
