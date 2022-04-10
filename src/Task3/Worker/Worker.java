@@ -49,4 +49,7 @@ public class Worker {
     public void decreaseSalary(double percent){
         salary *= (1 - percent/100);
     }
+    public void results(){
+        System.out.println(name + " превысил KPI на 10 процентов");
+    }
 }
