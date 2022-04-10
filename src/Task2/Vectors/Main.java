@@ -1,6 +1,5 @@
 package Task2.Vectors;
 
-import java.util.IllegalFormatException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,8 +10,8 @@ public class Main {
         Vector[] vectors = new Vector[2];
         vectors[0] = new Vector(0, 0);
         vectors[1] = new Vector(0, 0);
-        vectors[0]=vectors[0].inputVector(0);
-        vectors[1]=vectors[1].inputVector(1);
+        vectors[0]=vectors[0].inputVectorCoordinates(0);
+        vectors[1]=vectors[1].inputVectorCoordinates(1);
         vectors[0].printOutVector();
         System.out.println();
         vectors[1].printOutVector();
@@ -20,16 +19,15 @@ public class Main {
         boolean work = true;
         Vector[] resultVector = new Vector[6];
         resultVector[1] = new Vector(0, 0);
-        Scanner in = new Scanner(System.in);
         int operation = 0;
         boolean op1, op2, op3, op4;
-        op1 = op2 = op3 = op3 = op4 = false;
+        op1 = op2 = op3 = op4 = false;
 
 
         while (work) {
             try {
                 System.out.println("\nВведите операцию над векторами: 1- сложение, 2- вычитание, 3-умножение на скаляр, 4 - деление на скаляр 5- выход");
-                operation = in.nextInt();
+                operation = Input.getNormInt();
             } catch (Exception e) {
                 System.out.println("Необходимо ввести цифру от 1 до 4 ");
             }
@@ -48,9 +46,10 @@ public class Main {
 
                 case 3: { //умножение
                     System.out.print("Введите скаляр для вектора 1: ");
-                    double scalar = inputNormDouble(in);
+                    double scalar = Input.getNormDouble();
                     resultVector[0] = vectors[0].multiplicationVector(scalar);
                     System.out.print("Введите скаляр для вектора 2: ");
+                    scalar = Input.getNormDouble();
                     resultVector[3] = vectors[1].multiplicationVector(scalar);
                     op3 = true;
                     break;
@@ -60,11 +59,19 @@ public class Main {
                 case 4: { //деление
                     System.out.print("Введите скаляр для вектора 1: ");
 
-                    double scalar = inputNormDouble(in);
-                    if (scalar != 0) resultVector[4] = vectors[0].devisionVector(scalar); else System.out.println("Деление на ноль невозможно");
+                    double scalar = 0;
+                    do {
+                        scalar= Input.getNormDouble();
+                        if (scalar ==0)  System.out.print("Деление на ноль невозможно, введите число отличное от нуля ");
+                    } while(scalar==0);
+
+                    resultVector[4] = vectors[0].devisionVector(scalar);
                     System.out.print("Введите скаляр для вектора 2: ");
-                    scalar = inputNormDouble(in);
-                    if (scalar != 0) resultVector[5] = vectors[1].devisionVector(scalar); else System.out.println("Деление на ноль невозможно");
+                    do {
+                        scalar= Input.getNormDouble();
+                        if (scalar ==0)  System.out.print("Деление на ноль невозможно, введите число отличное от нуля ");
+                    } while(scalar==0);
+                    resultVector[5] = vectors[1].devisionVector(scalar);
                     op4 = true;
                     break;
 

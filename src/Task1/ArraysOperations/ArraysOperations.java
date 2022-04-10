@@ -13,11 +13,11 @@ public class ArraysOperations {
 
     public static void main(String[] args) throws IOException {
 
-       var in = new Scanner(System.in);
+
         //матрица размеров массивов
         int size[][] = new int[2][2];
         //ввод размеров массивов
-        inputSizeofArrays(in, size);
+        inputSizeofArrays(size);
         //вывод размеров массивов
         System.out.println("Размеры массива");
         printOutArray(size);
@@ -25,7 +25,7 @@ public class ArraysOperations {
         int[][] array1 = new int[size[0][0]][size[0][1]];
         int[][] array2 = new int[size[1][0]][size[1][1]];
         //ввод элементов массивов
-        inputArrayMembers(in, size, array1, array2);
+        inputArrayMembers(size, array1, array2);
         //вывод элементов массивов
         System.out.println();
         if (array1.length !=0 || array2.length!=0){
@@ -43,7 +43,7 @@ public class ArraysOperations {
         while(work){
             try {
                 System.out.println("Введите операцию над матрицами: 1- сложение, 2- вычитание, 3-умножение, 4- выход");
-                operation = in.nextInt();
+                operation = Input.getNormInt();
                 }catch (Exception e){
                 System.out.println("Необходимо ввести цифру от 1 до 4 ");
                 }
@@ -115,37 +115,30 @@ public class ArraysOperations {
 
     }
 
-    private static void inputSizeofArrays(Scanner in, int[][] size) throws IllegalArgumentException{
+    private static void inputSizeofArrays(int[][] size) throws IllegalArgumentException{
         for (int i =0; i<=1; i++){
             for(int j= 0; j<=1; j++){
                 do {
                     System.out.printf("Введите %d размер %d массива ", j + 1, i + 1);
-                    try{
-                        size[i][j] = in.nextInt();} catch (InputMismatchException e){
-                        System.out.println("Необходимо ввести число более нуля");
-                        in.skip(".*\n");
-                        inputSizeofArrays(in, size);
-
-                    };
+                    size[i][j]= Input.getNormInt();
                     if (size[i][j] ==0) System.out.println("Величина должна быть больше нуля ");
                 }while (size[i][j] <= 0 );
             }
         }
     }
 
-    private static void inputArrayMembers(Scanner in, int[][] size, int[][] array1, int[][] array2) throws IllegalArgumentException{
+    private static void inputArrayMembers(int[][] size, int[][] array1, int[][] array2) throws IllegalArgumentException{
         for (int matrix =0; matrix <= 1; matrix++){
 
             for (int i = 0; i <= size[matrix][0]-1; i++) {
                 for (int j = 0; j <= size[matrix][1]-1; j++) {
                       try {
                           System.out.printf("Введите элементы %d массива ", matrix + 1);
-                          if (matrix == 0) array1[i][j] = in.nextInt();
-                          else if (matrix == 1) array2[i][j] = in.nextInt();
+                          if (matrix == 0) array1[i][j] = Input.getNormInt();
+                          else if (matrix == 1) array2[i][j] = Input.getNormInt();
                       } catch (Exception e) {
                           System.out.println("Необходимо ввести число ");
-                          in.skip(".*\n");
-                          inputArrayMembers(in, size, array1, array2);
+                          inputArrayMembers(size, array1, array2);
                       }
                       }
             }

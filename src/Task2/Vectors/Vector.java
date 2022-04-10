@@ -12,39 +12,22 @@ public class Vector extends Main {
         this.x = x;
         this.y = y;
     }
-    public Vector inputVector(int number){
+
+
+
+    public Vector inputVectorCoordinates(int number){
         Scanner in = new Scanner(System.in);
         Vector filledVector = new Vector(0,0);
-        boolean normDouble = false;
-
-        do {
-            try {System.out.printf("Введите координату х %d вектора: ", number + 1);
-                filledVector.x = in.nextDouble();
-                normDouble = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Необходимо ввести число ");
-                in.skip(".*\n");
-            }
-        }
-            while (!normDouble);
-            normDouble = false;
-
-        do {
-            try {
-                System.out.printf("Введите координату y %d вектора: ", number + 1);
-                filledVector.y = in.nextDouble();
-                normDouble =true;
-            } catch (InputMismatchException e) {
-                System.out.println("Необходимо ввести число ");
-                in.skip(".*\n");
-            }
-        } while (!normDouble);
+        System.out.printf("Введите координату х %d вектора: ", number + 1);
+        filledVector.x= Input.getNormDouble();
+        System.out.printf("Введите координату y %d вектора: ", number + 1);
+        filledVector.y= Input.getNormDouble();
         return filledVector;
     }
 
     public void printOutVector(){
         System.out.printf("Координата вектора x: %.2f Координата вектора y: %.2f", this.x, this.y);
-    };
+    }
     public Vector additionVector(Vector vector2){
         Vector resultVector = new Vector(0,0);
         resultVector.x = this.x + vector2.x;
