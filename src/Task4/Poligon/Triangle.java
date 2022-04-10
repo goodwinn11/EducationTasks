@@ -16,4 +16,9 @@ public class Triangle extends Poligon{
             System.out.printf("\nКоордината точки  %d (x,y): (%d,%d) ", i+1, coordinates[i].x, coordinates[i].y);
         }
     }
+    public void shiftTriangle( int value){
+        coordinates[0].x += value;
+        coordinates[1].x += value;
+        coordinates[2].x += value;
+    }
 }
